@@ -91,7 +91,7 @@ export function PremiumDashboard({ user }: PremiumDashboardProps) {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 pb-20">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 ">
       <PremiumMobileNav />
 
       <div className="mobile-container py-6 space-y-6">

@@ -24,6 +24,7 @@ import {
   Phone,
   Router,
   Target,
+  EyeOff, Eye
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -74,23 +75,41 @@ export function PremiumMobileNav() {
     setIsQuickMenuOpen(false)
   }
 
+  const [showBalance, setShowBalance] = useState(true)
+
   return (
     <>
       {/* Mobile App Header */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50 shadow-sm">
-        <div className="mobile-container flex items-center justify-between py-3 px-2">
-          <Link href='/dashboard/settings' className="active:scale-[99%] transition-all  flex items-center gap-3 p-4 rounded-lg bg-accent/10 shadow-lg bg-gradient-to-br from-primary to-purple-600 hover:shadow-2xl hover:scale-105 text-white">
+        <div className="mobile-container flex items-center justify-between py-3 px-2 pt-5">
+          <Link href='/dashboard/settings' className="active:scale-[99.5%] active:brightness-90 transition-all flex items-center gap-3 p-3 rounded-lg bg-accent/10 shadow-lg bg-gradient-to-br from-primary to-purple-600 hover:shadow-2xl text-white">
             <div className="w-10 h-10 rounded-full flex items-center justify-center">
               <User className="w-5 h-5 text-white" />
             </div>
-            <div>
+            <div className="grid gap-0.5">
               <h1 className="font-bold text-base leading-tight">
                 {user ? user.user_metadata?.full_name || user.email : "Guest"}
               </h1>
-              <p className="text-xs text-white">Welcome back!</p>
+              <div className="flex gap-1 justify-self-end items-center">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    setShowBalance(!showBalance)
+                  }}
+                  className="text-xs font-bold font-mono tracking-widest px-1 py-0.5 bg-accent rounded-full text-primary w-fit h-fit self-center justify-self-end"
+                >
+                  <p>
+                    {showBalance ? "₦25,750" : "₦••••••"}
+                  </p>                  
+                </Button>
+
+              </div>
             </div>
           </Link>
-          <div className="flex items-center gap-2">
+          <div className="flex items-end">
             <NotificationCenter />
           </div>
         </div>
@@ -111,7 +130,7 @@ export function PremiumMobileNav() {
               className="fixed inset-0 bg-black/40 z-40"
               onClick={closeQuickMenu}
             />
-            
+
             {/* Quick Actions Menu */}
             <motion.div
               initial={{ y: "100%", opacity: 0 }}
@@ -124,7 +143,7 @@ export function PremiumMobileNav() {
               <div className="flex justify-center py-3">
                 <div className="w-10 h-1 bg-muted-foreground/30 rounded-full" />
               </div>
-              
+
               {/* Header */}
               <div className="px-4 pb-4">
                 <div className="flex items-center justify-between mb-1">
@@ -183,9 +202,8 @@ export function PremiumMobileNav() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className={`flex flex-col items-center space-y-1 h-auto py-2 px-3 ${
-                    isActive(item.href) ? "text-primary" : "text-muted-foreground hover:text-foreground"
-                  }`}
+                  className={`flex flex-col items-center space-y-1 h-auto py-2 px-3 ${isActive(item.href) ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                    }`}
                 >
                   <item.icon className="w-5 h-5" />
                   {/* <span className="text-xs font-medium">{item.label}</span> */}
@@ -197,13 +215,12 @@ export function PremiumMobileNav() {
 
           {/* FAB for quick actions (centered, floating above nav) */}
           <div className="absolute left-1/2 -translate-x-1/2 -top-7 z-10">
-            <Button 
+            <Button
               onClick={toggleQuickMenu}
-              className={`rounded-full shadow-xl w-14 h-14 flex items-center justify-center border-4 border-background transition-all duration-300 ${
-                isQuickMenuOpen 
-                  ? "bg-gray-500 rotate-45" 
+              className={`rounded-full shadow-xl w-14 h-14 flex items-center justify-center border-4 border-background transition-all duration-300 ${isQuickMenuOpen
+                  ? "bg-gray-500 rotate-45"
                   : "bg-gradient-to-br from-primary to-purple-600 hover:shadow-2xl hover:scale-105"
-              }`}
+                }`}
             >
               <Plus className="w-7 h-7 text-white" />
             </Button>

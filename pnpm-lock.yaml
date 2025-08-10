@@ -131,6 +131,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.8.4
         version: 5.84.1(react@19.1.1)
+      android:
+        specifier: ^0.0.8
+        version: 0.0.8
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.21(postcss@8.5.6)
@@ -2025,6 +2028,9 @@ packages:
 
   ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
+
+  android@0.0.8:
+    resolution: {integrity: sha512-cMasrXpHR6APDMSTu5JNMTL37GjYbcC9Uz2cyExSnr0f6XanNhPW3+iavHqRmfNW0QlM4kjZQa2epTjpyZcdjQ==}
 
   ansi-escapes@4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
@@ -6588,6 +6594,8 @@ snapshots:
       fast-json-stable-stringify: 2.1.0
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
+
+  android@0.0.8: {}
 
   ansi-escapes@4.3.2:
     dependencies:

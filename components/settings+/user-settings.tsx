@@ -912,7 +912,7 @@ export function UserSettings({ userId, userEmail, userName }: UserSettingsProps)
                             </p>
                           </div>
                         </div>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-2 flex-wrap gap-1 self-end">
                           {!device.current && (
                             <>
                               <Button 

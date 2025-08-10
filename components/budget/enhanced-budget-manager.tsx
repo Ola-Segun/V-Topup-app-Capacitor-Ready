@@ -546,7 +546,7 @@ export function EnhancedBudgetManager() {
                                 </div>
                                 <div>
                                   <h3 className="font-semibold text-lg">{budget.name}</h3>
-                                  <div className="flex items-center gap-2 mt-1">
+                                  <div className="flex items-center flex-wrap gap-2 mt-1">
                                     <Badge variant="secondary" className="text-xs">
                                       {budgetCategories.find(cat => cat.value === budget.category)?.label}
                                     </Badge>

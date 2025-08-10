@@ -230,7 +230,7 @@ export function BudgetManager({ userId }: BudgetManagerProps) {
                                   {status.label}
                                 </Badge>
                                 {!budget.is_active && (
-                                  <Badge variant="secondary" className="text-xs">
+                                  <Badge variant="secondary" className="text-xs hidden sm:inline-block">
                                     Paused
                                   </Badge>
                                 )}

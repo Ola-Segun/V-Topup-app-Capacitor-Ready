@@ -234,7 +234,7 @@ export function TransactionHistory() {
   const hasActiveFilters = searchTerm !== "" || filterType !== "all" || filterStatus !== "all" || filterDate !== "all"
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen">
       <PremiumMobileNav />
 
       <div className="mobile-container py-6 space-y-6">

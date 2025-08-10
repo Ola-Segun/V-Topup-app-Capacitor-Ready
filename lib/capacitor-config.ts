@@ -67,7 +67,11 @@ const config: CapacitorConfig = {
     backgroundColor: '#ffffff',
     allowMixedContent: true,
     captureInput: true,
-    webContentsDebuggingEnabled: false
+    webContentsDebuggingEnabled: false,
+    buildOptions: {
+      sourceCompatibility: "VERSION_17",
+      targetCompatibility: "VERSION_17"
+    }
   }
 }
 

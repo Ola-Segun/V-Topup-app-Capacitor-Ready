@@ -157,7 +157,7 @@ export function RecentActionsSection({ type, onActionSelect, className }: Recent
               <DropdownMenuItem
                 key={action.id}
                 onClick={() => onActionSelect(action)}
-                className="p-3 cursor-pointer hover:bg-muted/50 focus:bg-muted/50"
+                className="p-3 cursor-pointer hover:bg-muted/50 focus:bg-muted/50 w-full"
               >
                 <div className="flex items-center space-x-3 w-full">
                   <div className={`w-8 h-8 rounded-lg ${config.bgColor} flex items-center justify-center flex-shrink-0`}>

@@ -17,5 +17,9 @@ export default async function EnhancedBudgetPage() {
     }
   }
 
-  return <EnhancedBudgetManager />
+  return  (
+      <div className="min-h-screen">
+        <EnhancedBudgetManager />
+      </div>
+    )
 }
