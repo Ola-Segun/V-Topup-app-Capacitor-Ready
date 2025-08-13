@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'VTopup',
   webDir: 'public',
   server: {
-    url: 'http://10.0.2.2:3000',
+    url: 'http://localhost:3000', // Use localhost with ADB reverse
     cleartext: true
   }
 };

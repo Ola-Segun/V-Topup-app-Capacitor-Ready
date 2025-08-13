@@ -885,7 +885,7 @@
     border-bottom: 1px solid var(--border);
     border-radius: 0;
     background: transparent;
-    padding: 0.5rem 0;
+    padding: 0.5rem 0.5rem;
     transition: all 0.3s ease;
   }
 
@@ -950,7 +950,7 @@
     border: none;
     transition: all 0.3s ease;
     background: transparent;
-    padding: 0.5rem 0;
+    padding: 0.5rem 0.5rem;
   }
 
   input:focus,

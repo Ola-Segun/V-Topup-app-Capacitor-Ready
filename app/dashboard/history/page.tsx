@@ -23,7 +23,7 @@ export default async function HistoryPage() {
     {/* <ConfigNotice /> */}
       <TransactionHistory />
             {/* Bottom padding to prevent content from being hidden behind bottom nav */}
-      <div className="h-20"></div>
+      {/* <div className="h-20"></div> */}
     </div>
   )
 }

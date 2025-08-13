@@ -2,37 +2,22 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import {
   Home,
   Smartphone,
   Wifi,
   Wallet,
   History,
-  Settings,
-  Menu,
-  Tv,
-  Zap,
-  BarChart3,
-  Gift,
-  User,
-  LogOut,
-  MessageCircle,
   Plus,
-  X,
-  CreditCard,
-  Phone,
-  Router,
-  Target,
-  EyeOff, Eye
+  User,
+  Bell,
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { motion, AnimatePresence } from "framer-motion"
 import { useAuth } from "@/components/auth-provider"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { NotificationCenter } from "@/components/notifications/notification-center"
 import { FloatingSupportButton } from "../ui/floating-support-button"
+import { QuickActionsMenu } from "@/components/ui/quick-actions-menu"
 
 const mainNavItems = [
   { href: "/dashboard", icon: Home, label: "Dashboard" },
@@ -42,30 +27,12 @@ const mainNavItems = [
   { href: "/dashboard/history", icon: History, label: "History" },
 ]
 
-const quickActionItems = [
-  { href: "/dashboard/airtime", icon: Phone, label: "Airtime", color: "bg-blue-500", description: "Top up your mobile" },
-  { href: "/dashboard/data", icon: Wifi, label: "Data", color: "bg-green-500", description: "Internet bundles" },
-  { href: "/dashboard/cable", icon: Tv, label: "TV", color: "bg-purple-500", description: "Pay TV bills" },
-  { href: "/dashboard/electricity", icon: Zap, label: "Electricity", color: "bg-yellow-500", description: "Power bills" },
-  { href: "/dashboard/wallet", icon: CreditCard, label: "Wallet", color: "bg-indigo-500", description: "Add money" },
-  { href: "/dashboard/rewards", icon: Gift, label: "Rewards", color: "bg-pink-500", description: "Earn points" },
-  { href: "/dashboard/stats", icon: BarChart3, label: "Statistics", color: "bg-teal-500", description: "View analytics" },
-  { href: "/dashboard/budget", icon: Target, label: "Budget", color: "bg-amber-500", description: "Manage your budget" },
-  { href: "/dashboard/settings", icon: Settings, label: "Settings", color: "bg-gray-500", description: "Account settings" },
-]
-
 export function PremiumMobileNav() {
-  const [isOpen, setIsOpen] = useState(false)
   const [isQuickMenuOpen, setIsQuickMenuOpen] = useState(false)
   const pathname = usePathname()
-  const { user, signOut } = useAuth()
+  const { user } = useAuth()
 
   const isActive = (href: string) => pathname === href
-
-  const handleSignOut = async () => {
-    await signOut()
-    setIsOpen(false)
-  }
 
   const toggleQuickMenu = () => {
     setIsQuickMenuOpen(!isQuickMenuOpen)
@@ -81,36 +48,24 @@ export function PremiumMobileNav() {
     <>
       {/* Mobile App Header */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50 shadow-sm">
-        <div className="mobile-container flex items-center justify-between py-3 px-2 pt-5">
-          <Link href='/dashboard/settings' className="active:scale-[99.5%] active:brightness-90 transition-all flex items-center gap-3 p-3 rounded-lg bg-accent/10 shadow-lg bg-gradient-to-br from-primary to-purple-600 hover:shadow-2xl text-white">
+        <div className="mobile-container flex justify-between items-center">
+          <div className=" flex items-center py-3 px-2 pt-5 gap-2">
+          <Link href='/dashboard/settings' className=" text-white bg-accent-foreground rounded-full">
             <div className="w-10 h-10 rounded-full flex items-center justify-center">
               <User className="w-5 h-5 text-white" />
             </div>
             <div className="grid gap-0.5">
-              <h1 className="font-bold text-base leading-tight">
-                {user ? user.user_metadata?.full_name || user.email : "Guest"}
-              </h1>
-              <div className="flex gap-1 justify-self-end items-center">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    setShowBalance(!showBalance)
-                  }}
-                  className="text-xs font-bold font-mono tracking-widest px-1 py-0.5 bg-accent rounded-full text-primary w-fit h-fit self-center justify-self-end"
-                >
-                  <p>
-                    {showBalance ? "₦25,750" : "₦••••••"}
-                  </p>                  
-                </Button>
-
-              </div>
             </div>
           </Link>
-          <div className="flex items-end">
-            <NotificationCenter />
+              <h1 className="font-bold text-base leading-tight">
+                {/* {user ? user.user_metadata?.first_name || user.email : "Guest"} */}
+                Hi
+                {user?.user_metadata?.first_name}
+              </h1>
+          </div>
+          <div className="">
+            <NotificationCenter  />
+            {/* <Bell></Bell> */}
           </div>
         </div>
       </div>
@@ -118,80 +73,8 @@ export function PremiumMobileNav() {
       {/* Floating Support Button (mobile only) */}
       <FloatingSupportButton />
 
-      {/* Quick Actions Overlay */}
-      <AnimatePresence>
-        {isQuickMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/40 z-40"
-              onClick={closeQuickMenu}
-            />
-
-            {/* Quick Actions Menu */}
-            <motion.div
-              initial={{ y: "100%", opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: "100%", opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 500 }}
-              className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-lg border-t border-border/50 rounded-t-3xl shadow-2xl max-h-[70vh] overflow-y-auto pb-14"
-            >
-              {/* Handle bar */}
-              <div className="flex justify-center py-3">
-                <div className="w-10 h-1 bg-muted-foreground/30 rounded-full" />
-              </div>
-
-              {/* Header */}
-              <div className="px-4 pb-4">
-                <div className="flex items-center justify-between mb-1">
-                  <h3 className="text-lg font-semibold">Quick Actions</h3>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={closeQuickMenu}
-                    className="rounded-full h-8 w-8"
-                  >
-                    <X className="w-4 h-4" />
-                  </Button>
-                </div>
-                <p className="text-sm text-muted-foreground">Choose a service to get started</p>
-              </div>
-
-              {/* Quick Actions Grid */}
-              <div className="grid grid-cols-5 gap-3 justify-items-center px-4 pb-6">
-                {quickActionItems.map((item, index) => (
-                  <motion.div
-                    key={item.href}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    <Link
-                      href={item.href}
-                      onClick={closeQuickMenu}
-                      className="grid w-fit justify-items-center gap-0.5"
-                    >
-                      <div className="bg-card hover:bg-accent/50 transition-colors duration-200 rounded-2xl p-2 border border-border/50 shadow-sm w-fit">
-                        <div className="flex items-start gap-3">
-                          <div className={`p-2.5 rounded-xl ${item.color} shadow-sm`}>
-                            <item.icon className="w-5 h-5 text-white" />
-                          </div>
-                        </div>
-                      </div>
-                      <h4 className="font-medium text-xs leading-tight mb-0.5">
-                        {item.label}
-                      </h4>
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      {/* Quick Actions Menu Component */}
+      <QuickActionsMenu isOpen={isQuickMenuOpen} onClose={closeQuickMenu} />
 
       {/* Bottom Navigation Bar (mobile-app style) */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 h-14 bg-background/95 border-t border-border/50 shadow-t-lg">
@@ -202,11 +85,10 @@ export function PremiumMobileNav() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className={`flex flex-col items-center space-y-1 h-auto py-2 px-3 ${isActive(item.href) ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                  className={`flex flex-col items-center space-y-1 h-auto py-1 px-3 ${isActive(item.href) ? "text-primary" : "text-muted-foreground hover:text-foreground"
                     }`}
                 >
                   <item.icon className="w-5 h-5" />
-                  {/* <span className="text-xs font-medium">{item.label}</span> */}
                   {isActive(item.href) && <div className="w-1 h-1 bg-primary rounded-full"></div>}
                 </Button>
               </Link>

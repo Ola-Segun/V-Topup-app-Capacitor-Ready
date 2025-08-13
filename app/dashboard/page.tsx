@@ -25,7 +25,9 @@ export default async function DashboardPage() {
       id: "demo-user-123",
       email: "demo@example.com",
       user_metadata: {
-        full_name: "Demo User",
+        first_name: "User",
+        // last_name: "Demo",
+        // full_name: "Demo User",
       },
     }
   }
@@ -35,7 +37,7 @@ export default async function DashboardPage() {
       {/* <ConfigNotice /> */}
       <PremiumDashboard user={user} />
       {/* Bottom padding to prevent content from being hidden behind bottom nav */}
-      <div className="h-20"></div>
+      {/* <div className="h-2"></div> */}
     </div>
   )
 }

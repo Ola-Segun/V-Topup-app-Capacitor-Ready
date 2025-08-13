@@ -90,9 +90,9 @@ export function RegisterForm() {
       </div>
 
       <div className="mobile-container py-8">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
           {/* Logo and Title */}
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-2">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 blur-2xl rounded-full"></div>
               <div className="relative w-20 h-20 mx-auto bg-gradient-to-br from-primary to-purple-600 rounded-2xl flex items-center justify-center shadow-xl">
@@ -101,12 +101,11 @@ export function RegisterForm() {
             </div>
             <div>
               <h1 className="text-3xl font-bold text-foreground">Join TopUp Pro</h1>
-              <p className="text-muted-foreground">Create your account and start saving</p>
             </div>
           </div>
 
           {/* Benefits */}
-          <Card className="material-card border-border/50 bg-card">
+          {/* <Card className="material-card border-border/50 bg-card">
             <CardContent className="p-4">
               <h3 className="font-semibold text-foreground mb-3">What you'll get:</h3>
               <div className="space-y-2">
@@ -118,7 +117,7 @@ export function RegisterForm() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
 
           {/* Registration Form */}
           <Card className="material-card border-border/50 bg-card shadow-2xl">
@@ -126,8 +125,8 @@ export function RegisterForm() {
               <CardTitle className="text-xl font-bold text-foreground">Create Account</CardTitle>
               <CardDescription className="text-muted-foreground">Fill in your details to get started</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <form onSubmit={handleSubmit} className="space-y-4">
+            <CardContent className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-3">
                 {/* Full Name */}
                 <div className="space-y-2">
                   <Label htmlFor="fullName" className="text-foreground font-medium">
@@ -231,7 +230,7 @@ export function RegisterForm() {
                 </div>
 
                 {/* Terms Agreement */}
-                <div className="flex items-start gap-1 content-center">
+                <div className="flex gap-1 items-center">
                   <Checkbox
                     id="terms"
                     checked={formData.agreeToTerms}

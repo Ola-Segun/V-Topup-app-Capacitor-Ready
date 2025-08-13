@@ -1,4 +1,5 @@
 import { PremiumLoginForm } from "@/components/auth/premium-login-form"
+import { LoginForm } from "@/components/auth/login-form"
 import { ConfigNotice } from "@/components/config-notice"
 
 export default function LoginPage() {

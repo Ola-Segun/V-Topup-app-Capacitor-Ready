@@ -44,7 +44,7 @@ export function PremiumWalletCard({ balance, cardType, holderName }: PremiumWall
   return (
     <div className="perspective-1000">
       <motion.div
-        className="relative w-full h-56 transform-style-preserve-3d cursor-pointer"
+        className="relative w-full h-[12.3rem] transform-style-preserve-3d cursor-pointer"
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.6, type: "spring" }}
         onClick={() => setIsFlipped(!isFlipped)}

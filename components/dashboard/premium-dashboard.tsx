@@ -5,7 +5,7 @@ import type { User } from "@supabase/supabase-js"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Smartphone, Wifi, Wallet, History, Plus, TrendingUp, Bell, Gift, Zap, Shield, BarChart3 } from 'lucide-react'
+import { Smartphone, Wifi, Wallet, History, Plus, TrendingUp, Bell, Gift, Zap, Shield, BarChart3, Check } from 'lucide-react'
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { PremiumMobileNav } from "@/components/navigation/premium-mobile-nav"
@@ -61,7 +61,7 @@ export function PremiumDashboard({ user }: PremiumDashboardProps) {
       network: "MTN",
       amount: 1000,
       phone: "08012345678",
-      status: "completed",
+      status: Check,
       date: "2 mins ago",
       icon: Smartphone,
       color: "text-blue-500",
@@ -72,42 +72,29 @@ export function PremiumDashboard({ user }: PremiumDashboardProps) {
       network: "Airtel",
       amount: 2000,
       phone: "08087654321",
-      status: "completed",
+      status: Check,
       date: "1 hour ago",
       icon: Wifi,
       color: "text-green-500",
     },
-    {
-      id: 3,
-      type: "Cable TV",
-      network: "DSTV",
-      amount: 4500,
-      phone: "Premium Package",
-      status: "completed",
-      date: "Yesterday",
-      icon: Wallet,
-      color: "text-purple-500",
-    },
+    // {
+    //   id: 3,
+    //   type: "Cable TV",
+    //   network: "DSTV",
+    //   amount: 4500,
+    //   phone: "Premium Package",
+    //   status: "completed",
+    //   date: "Yesterday",
+    //   icon: Wallet,
+    //   color: "text-purple-500",
+    // },
   ]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 ">
       <PremiumMobileNav />
 
-      <div className="mobile-container py-6 space-y-6">
-        {/* Welcome header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex items-center justify-between"
-        >
-          <div>
-            <h1 className="text-2xl font-bold text-foreground">
-              Good morning, {user.user_metadata?.full_name?.split(" ")[0] || "User"}! 👋
-            </h1>
-            <p className="text-muted-foreground text-md">Ready for some quick top-ups?</p>
-          </div>
-        </motion.div>
+      <div className="mobile-container py-3 space-y-4">
 
         {/* Premium wallet card */}
         <motion.div 
@@ -164,15 +151,6 @@ export function PremiumDashboard({ user }: PremiumDashboardProps) {
           </div>
         </div>
 
-        {/* Service Categories */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ delay: 0.5 }}
-        >
-          <ServiceCategories />
-        </motion.div>
-
         {/* Stats cards */}
         <div className="grid grid-cols-2 gap-4">
           <motion.div 
@@ -224,43 +202,14 @@ export function PremiumDashboard({ user }: PremiumDashboardProps) {
           </motion.div>
         </div>
 
-        {/* Rewards banner */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ delay: 0.8 }}
-        >
-          <Card className="material-card shadow-xl py-0 border-0 overflow-hidden bg-card">
-            <CardContent className="p-0">
-              <div className="bg-gradient-to-r from-amber-500 to-amber-700 p-4 text-white relative">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-10 translate-x-10"></div>
-                <div className="flex items-center justify-between relative z-10">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                      <Gift className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="font-semibold">Earn 5% Cashback</p>
-                      <p className="text-xs text-white/80">On your next 3 transactions</p>
-                    </div>
-                  </div>
-                  <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm">
-                    Claim
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
         {/* Recent transactions */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ delay: 0.9 }}
         >
-          <Card className="material-card shadow-xl border-0 bg-card">
-            <CardContent className="p-6">
+          <Card className="material-card shadow-xl border-0 bg-card py-0">
+            <CardContent className="p-6 py-4">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold text-foreground">Recent Transactions</h3>
                 <Link href="/dashboard/history">
@@ -295,7 +244,7 @@ export function PremiumDashboard({ user }: PremiumDashboardProps) {
                     <div className="text-right">
                       <p className="font-semibold text-sm text-foreground">₦{transaction.amount.toLocaleString()}</p>
                       <Badge variant="secondary" className="text-xs bg-green-500/20 text-green-500 border-0">
-                        {transaction.status}
+                        <transaction.status className=" font-extrabold" />
                       </Badge>
                     </div>
                   </motion.div>
@@ -306,7 +255,7 @@ export function PremiumDashboard({ user }: PremiumDashboardProps) {
         </motion.div>
 
         {/* Security badge */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.3 }}
@@ -316,7 +265,7 @@ export function PremiumDashboard({ user }: PremiumDashboardProps) {
             <Shield className="w-4 h-4 text-green-500" />
             <span className="text-xs text-muted-foreground">Protected by 256-bit SSL encryption</span>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </div>
   )

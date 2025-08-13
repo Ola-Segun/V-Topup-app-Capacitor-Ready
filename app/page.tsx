@@ -3,6 +3,7 @@ import { createClient, isSupabaseConfigured } from "@/lib/supabase/server"
 import { WelcomeScreen } from "@/components/welcome-screen"
 import { ConfigNotice } from "@/components/config-notice"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { OnboardingScreen } from "@/components/onboarding/onboarding-screen"
 
 export default async function HomePage() {
   // Only check auth if Supabase is configured
@@ -22,7 +23,8 @@ export default async function HomePage() {
   return (
     <div>
       {/* <ConfigNotice /> */}
-      <WelcomeScreen />
+      {/* <WelcomeScreen /> */}
+      <OnboardingScreen />
     </div>
   )
 }

@@ -78,7 +78,7 @@ export function OnboardingScreen() {
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col items-center justify-center min-h-[500px] py-4">
+      <div className="flex-1 flex flex-col items-center justify-between min-h-[500px] h-[80vh] py-4">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -158,7 +158,7 @@ export function OnboardingScreen() {
       </div>
 
       {/* Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/80 backdrop-blur-sm border-t border-border/50">
+      <div className="fixed bottom-0 left-0 right-0 p-4 py-2 bg-background/80 backdrop-blur-sm border-t border-border/50">
         <div className="w-full max-w-md mx-auto flex justify-between items-center">
           <Button
             variant="ghost"

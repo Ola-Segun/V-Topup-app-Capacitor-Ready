@@ -15,6 +15,7 @@ import { useAuth } from "@/components/auth-provider"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { BiometricAuthDialog } from "../biometric2/biometric-auth-dialog"
 
 export function PremiumLoginForm() {
   const [showPassword, setShowPassword] = useState(false)
@@ -24,6 +25,13 @@ export function PremiumLoginForm() {
     password: "",
     rememberMe: false,
   })
+  const [showBiometric, setShowBiometric] = useState(false)
+  
+
+  const handleBiometricSuccess = () => {
+    toast.success("Biometric authentication successful!")
+    router.push("/dashboard")
+  }
 
   const { signIn } = useAuth()
   const router = useRouter()
@@ -176,6 +184,7 @@ export function PremiumLoginForm() {
               <Button
                 variant="outline"
                 className="w-full material-button border-border bg-background text-foreground hover:bg-muted h-12"
+                onClick={() => setShowBiometric(true)}
               >
                 <Fingerprint className="w-5 h-5 mr-2" />
                 Use Biometric Login
@@ -200,6 +209,7 @@ export function PremiumLoginForm() {
           </div>
         </motion.div>
       </div>
+            <BiometricAuthDialog open={showBiometric} onOpenChange={setShowBiometric} onSuccess={handleBiometricSuccess} />
     </div>
   )
 }

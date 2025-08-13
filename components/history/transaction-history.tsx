@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ArrowLeft, Search, Smartphone, Wifi, Calendar, Tv, Zap, Filter, X } from 'lucide-react'
+import { ArrowLeft, Search, Smartphone, Wifi, Calendar, Tv, Zap, Filter, X, SortAsc } from 'lucide-react'
 import Link from "next/link"
 import { PremiumMobileNav } from "@/components/navigation/premium-mobile-nav"
 import { motion } from "framer-motion"
@@ -258,7 +258,7 @@ export function TransactionHistory() {
 
         {/* Search and Filters */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-          <Card className="glass-card border-0 shadow-lg">
+          <Card className="glass-card border-0 shadow-lg py-0">
             <CardContent className="p-4 space-y-4">
               {/* Search */}
               <div className="relative">
@@ -272,13 +272,13 @@ export function TransactionHistory() {
               </div>
 
               {/* Filters Row 1 */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-3 gap-3 justify-items-center">
                 <Select value={filterType} onValueChange={setFilterType}>
                   <SelectTrigger className="bg-background/50 border-border/50">
                     <SelectValue placeholder="All Types" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Types</SelectItem>
+                    <SelectItem value="all">Types</SelectItem>
                     <SelectItem value="airtime">Airtime</SelectItem>
                     <SelectItem value="data">Data</SelectItem>
                     <SelectItem value="wallet_funding">Wallet Funding</SelectItem>
@@ -292,22 +292,19 @@ export function TransactionHistory() {
                     <SelectValue placeholder="All Status" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Status</SelectItem>
+                    <SelectItem value="all">Status</SelectItem>
                     <SelectItem value="completed">Completed</SelectItem>
                     <SelectItem value="pending">Pending</SelectItem>
                     <SelectItem value="failed">Failed</SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
 
-              {/* Filters Row 2 */}
-              <div className="grid grid-cols-2 gap-3">
-                <Select value={filterDate} onValueChange={setFilterDate}>
+                                <Select value={filterDate} onValueChange={setFilterDate}>
                   <SelectTrigger className="bg-background/50 border-border/50">
                     <SelectValue placeholder="All Time" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Time</SelectItem>
+                    <SelectItem value="all">Time</SelectItem>
                     <SelectItem value="today">Today</SelectItem>
                     <SelectItem value="yesterday">Yesterday</SelectItem>
                     <SelectItem value="last_week">Last Week</SelectItem>
@@ -315,7 +312,12 @@ export function TransactionHistory() {
                   </SelectContent>
                 </Select>
 
-                <Select value={sortBy} onValueChange={setSortBy}>
+
+              </div>
+
+              {/* Filters Row 2 */}
+              <div className="grid grid-cols-2 gap-3" style={ { gridTemplateColumns: "1fr 2fr" } }>
+                          <Select value={sortBy} onValueChange={setSortBy}>
                   <SelectTrigger className="bg-background/50 border-border/50">
                     <SelectValue placeholder="Sort by" />
                   </SelectTrigger>
@@ -327,17 +329,17 @@ export function TransactionHistory() {
                     <SelectItem value="status">Status</SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
-
               {/* Active Filters Summary */}
               {hasActiveFilters && (
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                <div className="flex items-center space-x-2 text-xs text-muted-foreground">
                   <Filter className="w-4 h-4" />
                   <span>
                     Showing {filteredTransactions.length} of {transactions.length} transactions
                   </span>
                 </div>
               )}
+              </div>
+
             </CardContent>
           </Card>
         </motion.div>
